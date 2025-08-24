@@ -4,6 +4,7 @@ import { ThemeProvider } from 'next-themes';
 
 import './styles/globals.css';
 import Navigation from '~/components/navigation';
+import Footer from '~/components/footer';
 
 const ibmPlexMono = IBM_Plex_Mono({
   variable: '--font-ibm-plex-mono',
@@ -24,12 +25,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${ibmPlexMono.variable} antialiased`}>
-        <main className="md:max-w-screen-lg mx-auto flex flex-col md:flex-row md:justify-between py-10 md:py-20">
+        <main className="md:max-w-screen-lg mx-auto flex flex-col md:flex-row md:justify-between py-10 md:py-20 px-4 md:px-0">
           <ThemeProvider>
             {children}
             <Navigation />
           </ThemeProvider>
         </main>
+
+        <Footer />
       </body>
     </html>
   );
