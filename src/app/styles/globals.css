@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* biome-ignore lint/suspicious/noUnknownAtRules: testing */
+@theme inline {
+  --font-mono: var(--font-ibm-plex-mono);
+}
