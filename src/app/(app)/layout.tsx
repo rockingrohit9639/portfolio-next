@@ -1,6 +1,8 @@
+import configPromise from '@payload-config';
 import type { Metadata } from 'next';
 import { IBM_Plex_Mono } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
+import { getPayload } from 'payload';
 
 import '~/app/styles/globals.css';
 
@@ -13,10 +15,18 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ['400', '500', '600', '700'],
 });
 
-export const metadata: Metadata = {
-  title: 'Rohit',
-  description: 'Rohit',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const payload = await getPayload({ config: configPromise });
+  const meta = await payload.findGlobal({
+    slug: 'meta',
+    select: { home: true },
+  });
+
+  return {
+    title: meta.home.title,
+    description: meta.home.description,
+  };
+}
 
 export default function RootLayout({
   children,

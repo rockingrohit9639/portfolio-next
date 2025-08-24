@@ -5,8 +5,9 @@ import { payloadCloudPlugin } from '@payloadcms/payload-cloud';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { buildConfig } from 'payload';
 
-import { Media } from './collections/Media';
-import { Users } from './collections/Users';
+import { Media } from './collections/media';
+import { Users } from './collections/users';
+import { Meta } from './globals/meta';
 import { env } from './lib/env';
 
 const filename = fileURLToPath(import.meta.url);
@@ -20,6 +21,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media],
+  globals: [Meta],
   editor: lexicalEditor(),
   secret: env.PAYLOAD_SECRET,
   typescript: {
