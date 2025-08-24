@@ -7,6 +7,7 @@ import { buildConfig } from 'payload';
 
 import { Media } from './collections/media';
 import { Users } from './collections/users';
+import { Home } from './globals/home';
 import { Meta } from './globals/meta';
 import { env } from './lib/env';
 
@@ -21,7 +22,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media],
-  globals: [Meta],
+  globals: [Meta, Home],
   editor: lexicalEditor(),
   secret: env.PAYLOAD_SECRET,
   typescript: {

@@ -86,9 +86,11 @@ export interface Config {
   };
   globals: {
     meta: Meta;
+    home: Home;
   };
   globalsSelect: {
     meta: MetaSelect<false> | MetaSelect<true>;
+    home: HomeSelect<false> | HomeSelect<true>;
   };
   locale: null;
   user: User & {
@@ -304,6 +306,19 @@ export interface Meta {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home".
+ */
+export interface Home {
+  id: string;
+  name: string;
+  title: string;
+  bio: string;
+  about: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "meta_select".
  */
 export interface MetaSelect<T extends boolean = true> {
@@ -313,6 +328,19 @@ export interface MetaSelect<T extends boolean = true> {
         title?: T;
         description?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home_select".
+ */
+export interface HomeSelect<T extends boolean = true> {
+  name?: T;
+  title?: T;
+  bio?: T;
+  about?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
