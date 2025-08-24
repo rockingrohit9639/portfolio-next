@@ -13,20 +13,20 @@ const LINKS: Array<{ href: string; label: string; isExternal?: boolean }> = [
 
 export default function Navigation() {
   return (
-    <nav className="grid gap-1 h-max md:sticky md:top-20 text-sm">
-      {LINKS.map((link) => (
-        <Link
-          href={link.href}
-          key={link.href}
-          target={link.isExternal ? '_blank' : '_self'}
-          className="hover:underline"
-        >
-          {link.label}
-          {link.isExternal && <span className="text-muted">↗</span>}
-        </Link>
-      ))}
+    <nav className="h-max md:sticky md:top-20 text-sm">
+      <ul className="grid gap-1 min-w-32">
+        {LINKS.map((link) => (
+          <li key={link.href}>
+            <Link href={link.href} target={link.isExternal ? '_blank' : '_self'}>
+              {link.label}
+            </Link>
+          </li>
+        ))}
 
-      <ThemeChanger />
+        <li>
+          <ThemeChanger />
+        </li>
+      </ul>
     </nav>
   );
 }

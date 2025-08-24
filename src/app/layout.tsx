@@ -23,13 +23,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${ibmPlexMono.variable} antialiased md:max-w-screen-lg mx-auto flex flex-col md:flex-row md:justify-between py-10 md:py-20`}
-      >
-        <ThemeProvider>
-          {children}
-          <Navigation />
-        </ThemeProvider>
+      <body className={`${ibmPlexMono.variable} antialiased`}>
+        <main className="md:max-w-screen-lg mx-auto flex flex-col md:flex-row md:justify-between py-10 md:py-20">
+          <ThemeProvider>
+            {children}
+            <Navigation />
+          </ThemeProvider>
+        </main>
       </body>
     </html>
   );
