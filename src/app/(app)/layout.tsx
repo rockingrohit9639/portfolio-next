@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import { IBM_Plex_Mono } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
 
-import './styles/globals.css';
-import Navigation from '~/components/navigation';
+import '~/app/styles/globals.css';
+
 import Footer from '~/components/footer';
+import Navigation from '~/components/navigation';
 
 const ibmPlexMono = IBM_Plex_Mono({
   variable: '--font-ibm-plex-mono',
