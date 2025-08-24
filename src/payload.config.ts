@@ -6,6 +6,7 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { buildConfig } from 'payload';
 
 import { Media } from './collections/media';
+import { Project } from './collections/project';
 import { Users } from './collections/users';
 import { Home } from './globals/home';
 import { Meta } from './globals/meta';
@@ -21,7 +22,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Project],
   globals: [Meta, Home],
   editor: lexicalEditor(),
   secret: env.PAYLOAD_SECRET,

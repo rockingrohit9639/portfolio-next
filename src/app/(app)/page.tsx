@@ -1,5 +1,6 @@
 import configPromise from '@payload-config';
 import { getPayload } from 'payload';
+import Projects from './_components/projects';
 
 export default async function Home() {
   const payload = await getPayload({ config: configPromise });
@@ -16,15 +17,7 @@ export default async function Home() {
       <p className="mb-10 md:mb-20">{home.about}</p>
 
       <h2 className="mb-4 text-lg md:text-xl text-muted">projects</h2>
-      <h3 className="text-lg font-medium">test project</h3>
-      <p className="mb-1 text-muted text-sm">html, css, javascript</p>
-      <ul>
-        <li>something</li>
-        <li>something</li>
-        <li>something</li>
-        <li>something</li>
-        <li>something</li>
-      </ul>
+      <Projects className="mb-10 md:mb-20" />
 
       <h2 className="mb-4 text-lg md:text-xl text-muted">skills</h2>
       <div>
