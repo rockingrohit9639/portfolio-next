@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { IBM_Plex_Mono } from 'next/font/google';
+import { ThemeProvider } from 'next-themes';
 
 import './styles/globals.css';
-import { ThemeProvider } from 'next-themes';
-import ThemeChanger from '~/components/theme-changer';
+import Navigation from '~/components/navigation';
 
 const ibmPlexMono = IBM_Plex_Mono({
   variable: '--font-ibm-plex-mono',
@@ -23,10 +23,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${ibmPlexMono.variable} antialiased`}>
+      <body
+        className={`${ibmPlexMono.variable} antialiased md:max-w-screen-lg mx-auto flex flex-col md:flex-row md:justify-between py-10 md:py-20`}
+      >
         <ThemeProvider>
-          <ThemeChanger />
           {children}
+          <Navigation />
         </ThemeProvider>
       </body>
     </html>

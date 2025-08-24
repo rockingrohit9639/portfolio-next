@@ -17,12 +17,13 @@ export default function ThemeChanger() {
 
   return (
     <button
+      className="w-max cursor-pointer"
       type="button"
       onClick={() => {
         setTheme(theme === 'dark' ? 'light' : 'dark');
       }}
     >
-      {theme}
+      <span className="text-muted">theme:</span> {theme}
     </button>
   );
 }
