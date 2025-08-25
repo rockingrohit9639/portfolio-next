@@ -5,12 +5,12 @@ import { payloadCloudPlugin } from '@payloadcms/payload-cloud';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { buildConfig } from 'payload';
 
-import { Media } from './collections/media';
-import { Project } from './collections/project';
-import { Skill } from './collections/skills';
-import { Users } from './collections/users';
-import { Home } from './globals/home';
-import { Meta } from './globals/meta';
+import { Media } from './collections/Media';
+import { Project } from './collections/Project';
+import { Skill } from './collections/Skills';
+import { Users } from './collections/Users';
+import { Home } from './globals/Home';
+import { Meta } from './globals/Meta';
 import { env } from './lib/env';
 
 const filename = fileURLToPath(import.meta.url);
