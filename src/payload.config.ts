@@ -5,7 +5,6 @@ import { payloadCloudPlugin } from '@payloadcms/payload-cloud';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { buildConfig } from 'payload';
 
-import { Media } from './collections/Media';
 import { Project } from './collections/Project';
 import { Skill } from './collections/Skills';
 import { Users } from './collections/Users';
@@ -23,7 +22,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Project, Skill],
+  collections: [Users, Project, Skill],
   globals: [Meta, Home],
   editor: lexicalEditor(),
   secret: env.PAYLOAD_SECRET,
