@@ -72,6 +72,7 @@ export interface Config {
     skills: Skill;
     experience: Experience;
     thoughts: Thought;
+    bookmarks: Bookmark;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -83,6 +84,7 @@ export interface Config {
     skills: SkillsSelect<false> | SkillsSelect<true>;
     experience: ExperienceSelect<false> | ExperienceSelect<true>;
     thoughts: ThoughtsSelect<false> | ThoughtsSelect<true>;
+    bookmarks: BookmarksSelect<false> | BookmarksSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -213,6 +215,18 @@ export interface Thought {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "bookmarks".
+ */
+export interface Bookmark {
+  id: string;
+  title: string;
+  url: string;
+  category: 'tools' | 'design' | 'articles' | 'misc' | 'music' | 'videos';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -237,6 +251,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'thoughts';
         value: string | Thought;
+      } | null)
+    | ({
+        relationTo: 'bookmarks';
+        value: string | Bookmark;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -358,6 +376,17 @@ export interface ThoughtsSelect<T extends boolean = true> {
   title?: T;
   content?: T;
   isPublished?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "bookmarks_select".
+ */
+export interface BookmarksSelect<T extends boolean = true> {
+  title?: T;
+  url?: T;
+  category?: T;
   updatedAt?: T;
   createdAt?: T;
 }

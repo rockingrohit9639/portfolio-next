@@ -21,6 +21,10 @@ export default async function ThoughtsPage() {
 
   return (
     <div>
+      <h1 className="mb-5 md:mb-10 md:max-w-xl text-muted">
+        welcome to my scratchpad: project ideas, random ramblings, and notes from the island.
+      </h1>
+
       {Object.entries(groupedThoughts).map(([type, thoughts]) => (
         <div key={type} className="mb-5 md:mb-10">
           <h2 className="mb-2 text-muted">{type}</h2>
