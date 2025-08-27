@@ -19,7 +19,7 @@ export default async function BookmarksPage() {
   );
 
   return (
-    <div>
+    <div className="md:max-w-xl">
       <h1 className="mb-5 md:mb-10 md:max-w-xl text-muted">
         my digital shelf: tools, articles, videos, and random gems i've collected along the way.
       </h1>

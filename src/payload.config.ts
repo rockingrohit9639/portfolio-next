@@ -9,6 +9,7 @@ import { Bookmark } from './collections/Bookmark';
 import { Experience } from './collections/Experience';
 import { Project } from './collections/Project';
 import { Skill } from './collections/Skills';
+import { Snippets } from './collections/Snippets';
 import { Thoughts } from './collections/Thoughts';
 import { Users } from './collections/Users';
 import { Home } from './globals/Home';
@@ -25,7 +26,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Project, Skill, Experience, Thoughts, Bookmark],
+  collections: [Users, Project, Skill, Experience, Thoughts, Bookmark, Snippets],
   globals: [Meta, Home],
   editor: lexicalEditor(),
   secret: env.PAYLOAD_SECRET,

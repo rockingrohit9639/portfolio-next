@@ -20,7 +20,7 @@ export default async function ThoughtsPage() {
   );
 
   return (
-    <div>
+    <div className="md:max-w-xl">
       <h1 className="mb-5 md:mb-10 md:max-w-xl text-muted">
         welcome to my scratchpad: project ideas, random ramblings, and notes from the island.
       </h1>

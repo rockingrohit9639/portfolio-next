@@ -73,6 +73,7 @@ export interface Config {
     experience: Experience;
     thoughts: Thought;
     bookmarks: Bookmark;
+    snippets: Snippet;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -85,6 +86,7 @@ export interface Config {
     experience: ExperienceSelect<false> | ExperienceSelect<true>;
     thoughts: ThoughtsSelect<false> | ThoughtsSelect<true>;
     bookmarks: BookmarksSelect<false> | BookmarksSelect<true>;
+    snippets: SnippetsSelect<false> | SnippetsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -227,6 +229,17 @@ export interface Bookmark {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "snippets".
+ */
+export interface Snippet {
+  id: string;
+  title: string;
+  content: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -255,6 +268,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'bookmarks';
         value: string | Bookmark;
+      } | null)
+    | ({
+        relationTo: 'snippets';
+        value: string | Snippet;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -387,6 +404,16 @@ export interface BookmarksSelect<T extends boolean = true> {
   title?: T;
   url?: T;
   category?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "snippets_select".
+ */
+export interface SnippetsSelect<T extends boolean = true> {
+  title?: T;
+  content?: T;
   updatedAt?: T;
   createdAt?: T;
 }

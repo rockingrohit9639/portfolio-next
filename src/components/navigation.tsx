@@ -5,7 +5,7 @@ const LINKS: Array<{ href: string; label: string; isExternal?: boolean }> = [
   { href: '/', label: 'home' },
   { href: '/thoughts', label: 'thoughts' },
   { href: '/bookmarks', label: 'bookmarks' },
-  { href: '/notes', label: 'notes' },
+  { href: '/snippets', label: 'snippets' },
   { href: 'https://github.com/rockingrohit9639', label: 'github', isExternal: true },
 ];
 
