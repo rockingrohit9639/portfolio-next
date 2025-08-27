@@ -71,6 +71,7 @@ export interface Config {
     projects: Project;
     skills: Skill;
     experience: Experience;
+    thoughts: Thought;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -81,6 +82,7 @@ export interface Config {
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     skills: SkillsSelect<false> | SkillsSelect<true>;
     experience: ExperienceSelect<false> | ExperienceSelect<true>;
+    thoughts: ThoughtsSelect<false> | ThoughtsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -195,6 +197,22 @@ export interface Experience {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "thoughts".
+ */
+export interface Thought {
+  id: string;
+  type: 'quote' | 'project' | 'note' | 'public';
+  /**
+   * Optional title for this thought (useful for project ideas).
+   */
+  title?: string | null;
+  content: string;
+  isPublished?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -215,6 +233,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'experience';
         value: string | Experience;
+      } | null)
+    | ({
+        relationTo: 'thoughts';
+        value: string | Thought;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -324,6 +346,18 @@ export interface ExperienceSelect<T extends boolean = true> {
   endDate?: T;
   location?: T;
   description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "thoughts_select".
+ */
+export interface ThoughtsSelect<T extends boolean = true> {
+  type?: T;
+  title?: T;
+  content?: T;
+  isPublished?: T;
   updatedAt?: T;
   createdAt?: T;
 }

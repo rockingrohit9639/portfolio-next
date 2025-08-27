@@ -22,7 +22,7 @@ export default async function Experience({ className }: ExperienceProps) {
           <p>
             <span className="font-medium">{experience.title}</span> @{experience.company}
           </p>
-          <p className="text-sm text-muted">
+          <p className="text-xs text-muted lowercase mb-2">
             {dayjs(experience.startDate).format(DATE_FORMAT)} -{' '}
             {experience.endDate ? dayjs(experience.endDate).format(DATE_FORMAT) : 'Present'}
           </p>

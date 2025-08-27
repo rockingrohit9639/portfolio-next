@@ -8,6 +8,7 @@ import { buildConfig } from 'payload';
 import { Experience } from './collections/Experience';
 import { Project } from './collections/Project';
 import { Skill } from './collections/Skills';
+import { Thoughts } from './collections/Thoughts';
 import { Users } from './collections/Users';
 import { Home } from './globals/Home';
 import { Meta } from './globals/Meta';
@@ -23,7 +24,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Project, Skill, Experience],
+  collections: [Users, Project, Skill, Experience, Thoughts],
   globals: [Meta, Home],
   editor: lexicalEditor(),
   secret: env.PAYLOAD_SECRET,
