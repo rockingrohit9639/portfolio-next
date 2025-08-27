@@ -4,7 +4,6 @@ import ThemeChanger from './theme-changer';
 const LINKS: Array<{ href: string; label: string; isExternal?: boolean }> = [
   { href: '/', label: 'home' },
   { href: '/thoughts', label: 'thoughts' },
-  { href: '/motivations', label: 'motivations' },
   { href: '/bookmarks', label: 'bookmarks' },
   { href: '/now', label: 'now' },
   { href: '/notes', label: 'notes' },
