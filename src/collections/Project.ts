@@ -14,7 +14,7 @@ export const Project = {
       label: 'Skills',
       type: 'array',
       required: true,
-      fields: [{ name: 'skill', type: 'text' }],
+      fields: [{ name: 'skill', type: 'relationship', relationTo: 'skills' }],
     },
     {
       name: 'description',

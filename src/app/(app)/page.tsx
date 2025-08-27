@@ -1,6 +1,7 @@
 import configPromise from '@payload-config';
 import { getPayload } from 'payload';
 import Projects from './_components/projects';
+import Skills from './_components/skills';
 
 export default async function Home() {
   const payload = await getPayload({ config: configPromise });
@@ -20,11 +21,7 @@ export default async function Home() {
       <Projects className="mb-10 md:mb-20" />
 
       <h2 className="mb-4 text-lg md:text-xl text-muted">skills</h2>
-      <div>
-        <p>frontend magic: react, nextjs, tailwind </p>
-        <p>backend wizardry: nestjs, node, postgres </p>
-        <p>miscellaneous tricks: docker, git, cms spells</p>
-      </div>
+      <Skills />
     </div>
   );
 }
