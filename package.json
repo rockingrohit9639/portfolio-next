@@ -17,6 +17,7 @@
     "@payloadcms/payload-cloud": "^3.53.0",
     "@payloadcms/richtext-lexical": "^3.53.0",
     "@t3-oss/env-nextjs": "^0.13.8",
+    "babel-plugin-react-compiler": "^19.1.0-rc.2",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.14",
     "graphql": "^16.11.0",
