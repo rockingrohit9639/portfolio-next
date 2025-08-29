@@ -1,12 +1,10 @@
-import configPromise from '@payload-config';
-import { getPayload } from 'payload';
+import { getHomePageData } from '~/lib/queries';
 import Experience from './_components/experience';
 import Projects from './_components/projects';
 import Skills from './_components/skills';
 
 export default async function Home() {
-  const payload = await getPayload({ config: configPromise });
-  const home = await payload.findGlobal({ slug: 'home' });
+  const home = await getHomePageData();
 
   return (
     <div className="md:max-w-xl">

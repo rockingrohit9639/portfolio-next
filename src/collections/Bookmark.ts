@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload';
 export const Bookmark = {
   slug: 'bookmarks',
   admin: { useAsTitle: 'title' },
+  hooks: {},
   fields: [
     {
       name: 'title',

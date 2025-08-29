@@ -1,7 +1,11 @@
 import type { GlobalConfig } from 'payload';
+import { GlobalAfterChange } from '~/lib/payload';
 
 export const Home = {
   slug: 'home',
+  hooks: {
+    afterChange: [GlobalAfterChange],
+  },
   fields: [
     {
       name: 'name',
