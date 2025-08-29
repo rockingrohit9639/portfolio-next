@@ -20,6 +20,11 @@ export const Experience = {
       label: 'Company',
     },
     {
+      name: 'url',
+      type: 'text',
+      label: 'Company URL',
+    },
+    {
       name: 'startDate',
       type: 'date',
       required: true,

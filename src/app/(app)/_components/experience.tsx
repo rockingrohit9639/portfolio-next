@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import Link from 'next/link';
 import { cn } from '~/lib/cn';
 import { DATE_FORMAT } from '~/lib/constants';
 import { getExperiences } from '~/lib/queries';
@@ -15,7 +16,14 @@ export default async function Experience({ className }: ExperienceProps) {
       {experiences.map((experience) => (
         <div key={experience.id}>
           <p>
-            <span className="font-medium">{experience.title}</span> @{experience.company}
+            <span className="font-medium">{experience.title}</span>{' '}
+            {experience.url ? (
+              <Link href={experience.url} target="_blank" className="italic underline">
+                @{experience.company}
+              </Link>
+            ) : (
+              <span className="italic">@{experience.company}</span>
+            )}
           </p>
           <p className="text-xs text-muted lowercase mb-2">
             {dayjs(experience.startDate).format(DATE_FORMAT)} -{' '}

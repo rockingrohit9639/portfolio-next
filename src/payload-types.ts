@@ -192,6 +192,7 @@ export interface Experience {
   id: string;
   title: string;
   company: string;
+  url?: string | null;
   startDate: string;
   endDate?: string | null;
   location: string;
@@ -377,6 +378,7 @@ export interface SkillsSelect<T extends boolean = true> {
 export interface ExperienceSelect<T extends boolean = true> {
   title?: T;
   company?: T;
+  url?: T;
   startDate?: T;
   endDate?: T;
   location?: T;
