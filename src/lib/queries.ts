@@ -44,6 +44,7 @@ export const getSkills = unstable_cache(
     const skills = await payload.find({
       collection: 'skills',
       depth: 1,
+      limit: 100,
     });
     return skills.docs;
   },

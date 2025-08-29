@@ -223,7 +223,7 @@ export interface Bookmark {
   id: string;
   title: string;
   url: string;
-  category: 'tools' | 'design' | 'articles' | 'misc' | 'music' | 'videos';
+  category: 'tools' | 'design' | 'articles' | 'misc' | 'music' | 'videos' | 'games';
   updatedAt: string;
   createdAt: string;
 }

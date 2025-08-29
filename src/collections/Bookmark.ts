@@ -31,6 +31,7 @@ export const Bookmark = {
         { label: 'Misc', value: 'misc' },
         { label: 'Music', value: 'music' },
         { label: 'Videos', value: 'videos' },
+        { label: 'Games', value: 'games' },
       ],
     },
   ],
