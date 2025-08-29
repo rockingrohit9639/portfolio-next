@@ -1,9 +1,12 @@
 import type { CollectionConfig } from 'payload';
+import { CollectionAfterChange } from '~/lib/payload';
 
 export const Bookmark = {
   slug: 'bookmarks',
   admin: { useAsTitle: 'title' },
-  hooks: {},
+  hooks: {
+    afterChange: [CollectionAfterChange],
+  },
   fields: [
     {
       name: 'title',

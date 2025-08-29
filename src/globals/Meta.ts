@@ -1,7 +1,11 @@
 import type { GlobalConfig } from 'payload';
+import { GlobalAfterChange } from '~/lib/payload';
 
 export const Meta = {
   slug: 'meta',
+  hooks: {
+    afterChange: [GlobalAfterChange],
+  },
   fields: [
     {
       label: 'Home',

@@ -1,23 +1,18 @@
-import configPromise from '@payload-config';
 import dayjs from 'dayjs';
-import { getPayload } from 'payload';
 import { cn } from '~/lib/cn';
 import { DATE_FORMAT } from '~/lib/constants';
+import { getExperiences } from '~/lib/queries';
 
 type ExperienceProps = {
   className?: string;
 };
 
 export default async function Experience({ className }: ExperienceProps) {
-  const payload = await getPayload({ config: configPromise });
-  const experience = await payload.find({
-    collection: 'experience',
-    depth: 1,
-  });
+  const experiences = await getExperiences();
 
   return (
     <div className={cn('grid gap-4', className)}>
-      {experience.docs.map((experience) => (
+      {experiences.map((experience) => (
         <div key={experience.id}>
           <p>
             <span className="font-medium">{experience.title}</span> @{experience.company}

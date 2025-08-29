@@ -1,15 +1,10 @@
-import configPromise from '@payload-config';
-import { getPayload } from 'payload';
+import { getSkills } from '~/lib/queries';
 import type { Skill } from '~/payload-types';
 
 export default async function Skills() {
-  const payload = await getPayload({ config: configPromise });
-  const skills = await payload.find({
-    collection: 'skills',
-    depth: 1,
-  });
+  const skills = await getSkills();
 
-  const groupedSkills = skills.docs.reduce(
+  const groupedSkills = skills.reduce(
     (acc, skill) => {
       const category = skill.category;
       if (!acc[category]) {

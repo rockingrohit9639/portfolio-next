@@ -1,6 +1,5 @@
-import configPromise from '@payload-config';
-import { getPayload } from 'payload';
 import { cn } from '~/lib/cn';
+import { getProjects } from '~/lib/queries';
 import type { Skill } from '~/payload-types';
 
 type ProjectsProps = {
@@ -8,18 +7,11 @@ type ProjectsProps = {
 };
 
 export default async function Projects({ className }: ProjectsProps) {
-  const payload = await getPayload({ config: configPromise });
-  const projects = await payload.find({
-    collection: 'projects',
-    depth: 1,
-    where: {
-      isArchive: { equals: false },
-    },
-  });
+  const projects = await getProjects();
 
   return (
     <div className={cn(className)}>
-      {projects.docs.map((project) => (
+      {projects.map((project) => (
         <div key={project.id}>
           <h3 className="text-lg font-medium">{project.title}</h3>
           <p className="text-sm text-muted mb-2">

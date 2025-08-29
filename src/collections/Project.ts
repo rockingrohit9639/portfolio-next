@@ -1,7 +1,11 @@
 import type { CollectionConfig } from 'payload';
+import { CollectionAfterChange } from '~/lib/payload';
 
 export const Project = {
   slug: 'projects',
+  hooks: {
+    afterChange: [CollectionAfterChange],
+  },
   fields: [
     {
       name: 'title',

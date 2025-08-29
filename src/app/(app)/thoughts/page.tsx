@@ -1,17 +1,10 @@
-import configPromise from '@payload-config';
-import { getPayload } from 'payload';
+import { getThoughts } from '~/lib/queries';
 import type { Thought } from '~/payload-types';
 
 export default async function ThoughtsPage() {
-  const payload = await getPayload({ config: configPromise });
-  const thoughts = await payload.find({
-    collection: 'thoughts',
-    where: {
-      isPublished: { equals: true },
-    },
-  });
+  const thoughts = await getThoughts();
 
-  const groupedThoughts = thoughts.docs.reduce(
+  const groupedThoughts = thoughts.reduce(
     (acc, thought) => {
       acc[thought.type] = [...(acc[thought.type] || []), thought];
       return acc;

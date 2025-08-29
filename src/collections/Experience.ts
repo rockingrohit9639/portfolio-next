@@ -1,7 +1,11 @@
 import type { CollectionConfig } from 'payload';
+import { CollectionAfterChange } from '~/lib/payload';
 
 export const Experience = {
   slug: 'experience',
+  hooks: {
+    afterChange: [CollectionAfterChange],
+  },
   fields: [
     {
       name: 'title',

@@ -1,16 +1,10 @@
-import configPromise from '@payload-config';
 import Link from 'next/link';
-import { getPayload } from 'payload';
+import { getBookmarks } from '~/lib/queries';
 import type { Bookmark } from '~/payload-types';
 
 export default async function BookmarksPage() {
-  const payload = await getPayload({ config: configPromise });
-  const bookmarks = await payload.find({
-    collection: 'bookmarks',
-    sort: 'createdAt',
-  });
-
-  const groupedBookmarks = bookmarks.docs.reduce(
+  const bookmarks = await getBookmarks();
+  const groupedBookmarks = bookmarks.reduce(
     (acc, bookmark) => {
       acc[bookmark.category] = [...(acc[bookmark.category] || []), bookmark];
       return acc;

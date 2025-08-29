@@ -1,7 +1,11 @@
 import type { CollectionConfig } from 'payload';
+import { CollectionAfterChange } from '~/lib/payload';
 
 export const Skill = {
   slug: 'skills',
+  hooks: {
+    afterChange: [CollectionAfterChange],
+  },
   admin: {
     useAsTitle: 'skill',
   },

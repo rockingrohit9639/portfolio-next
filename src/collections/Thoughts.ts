@@ -1,9 +1,13 @@
 import type { CollectionConfig } from 'payload';
+import { CollectionAfterChange } from '~/lib/payload';
 
 export const Thoughts = {
   slug: 'thoughts',
   admin: {
     useAsTitle: 'title',
+  },
+  hooks: {
+    afterChange: [CollectionAfterChange],
   },
   fields: [
     {
