@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* biome-ignore lint/suspicious/noUnknownAtRules: tailwind-scrollbar */
+@plugin 'tailwind-scrollbar';
+
 /* biome-ignore lint/suspicious/noUnknownAtRules: Theme variables*/
 @theme inline {
   --font-mono: var(--font-ibm-plex-mono);

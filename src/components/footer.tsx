@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="text-sm text-muted mb-10">
       <p className="text-center">
-        &copy; {new Date().getFullYear()} rohit saini · built with{' '}
+        built with{' '}
         <Link href="https://nextjs.org/" target="_blank" className="underline">
           nextjs
         </Link>{' '}

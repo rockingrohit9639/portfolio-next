@@ -19,9 +19,9 @@ export default async function Skills() {
   return (
     <div>
       {Object.entries(groupedSkills).map(([category, skills]) => (
-        <div key={category}>
-          <h3 className="text-sm text-muted">{category}</h3>
-          <p className="mb-2">{skills.map((s) => s.skill).join(', ')}</p>
+        <div key={category} className="mb-4">
+          <h3 className="text-sm text-muted mb-1">{category}</h3>
+          <p>{skills.map((s) => s.skill).join(', ')}</p>
         </div>
       ))}
     </div>

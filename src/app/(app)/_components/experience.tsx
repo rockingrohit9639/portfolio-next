@@ -18,7 +18,7 @@ export default async function Experience({ className }: ExperienceProps) {
           <p>
             <span className="font-medium">{experience.title}</span>{' '}
             {experience.url ? (
-              <Link href={experience.url} target="_blank" className="italic underline">
+              <Link href={experience.url} target="_blank" className="italic hover:underline hover:underline-offset-2">
                 @{experience.company}
               </Link>
             ) : (

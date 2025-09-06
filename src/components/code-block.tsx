@@ -23,19 +23,23 @@ export default function CodeBlock({ code }: CodeBlockProps) {
   }
 
   return (
-    <div className="bg-code-background overflow-x-auto rounded p-4 relative">
+    <div className="bg-code-background rounded-md p-4 relative w-full overflow-hidden">
       <button
         type="button"
-        className="absolute right-4 top-4 cursor-pointer p-1 hover:bg-muted/20 rounded-sm z-10"
+        className="absolute right-4 top-4 cursor-pointer p-1 hover:bg-muted/40 rounded-sm z-10"
         onClick={handleCopy}
       >
         {copied ? <CheckIcon /> : <CopyIcon />}
       </button>
 
-      <pre>
-        {/** biome-ignore lint/security/noDangerouslySetInnerHtml: my code is safe */}
-        <code dangerouslySetInnerHTML={{ __html: hljs.highlightAuto(code).value }} />
-      </pre>
+      <div className="w-full overflow-auto scrollbar-none">
+        <pre>
+          <code
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: my code is safe
+            dangerouslySetInnerHTML={{ __html: hljs.highlightAuto(code).value }}
+          />
+        </pre>
+      </div>
     </div>
   );
 }

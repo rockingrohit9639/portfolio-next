@@ -14,7 +14,11 @@ export default async function Projects({ className }: ProjectsProps) {
     <div className={cn('space-y-8', className)}>
       {projects.map((project) => (
         <div key={project.id}>
-          <Link className="font-medium" href={project.links.github} target="_blank">
+          <Link
+            className="font-medium hover:underline hover:underline-offset-2"
+            href={project.links.github}
+            target="_blank"
+          >
             {project.title}
           </Link>
           <p className="text-sm text-muted mb-2">

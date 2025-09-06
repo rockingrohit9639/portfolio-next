@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { getBookmarks } from '~/lib/queries';
 import type { Bookmark } from '~/payload-types';
@@ -22,14 +23,24 @@ export default async function BookmarksPage() {
         <div key={category} className="mb-5 md:mb-10">
           <h2 className="mb-2 text-muted">{category}</h2>
           {bookmarks.map((bookmark) => (
-            <Link
-              key={bookmark.id}
-              href={bookmark.url}
-              target="_blank"
-              className="lowercase block border-b w-max border-muted"
-            >
-              {bookmark.title}
-            </Link>
+            <div key={bookmark.id} className="flex items-center gap-2">
+              <Image
+                className="rounded-full"
+                src={`https://s2.googleusercontent.com/s2/favicons?domain=${bookmark.url}`}
+                alt={bookmark.title}
+                width={20}
+                height={20}
+              />
+
+              <Link
+                key={bookmark.id}
+                href={bookmark.url}
+                target="_blank"
+                className="lowercase w-max block cursor-pointer hover:underline hover:underline-offset-2"
+              >
+                {bookmark.title}
+              </Link>
+            </div>
           ))}
         </div>
       ))}
