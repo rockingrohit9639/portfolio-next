@@ -1,5 +1,4 @@
-import { generateMetadata } from '~/lib/meta';
-import { getThoughts } from '~/lib/queries';
+import { generateMetadata, getThoughts } from '~/lib/queries';
 import type { Thought } from '~/payload-types';
 
 export const metadata = generateMetadata('thoughts');

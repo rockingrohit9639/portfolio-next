@@ -5,7 +5,7 @@ import '~/app/styles/globals.css';
 
 import Footer from '~/components/footer';
 import Navigation from '~/components/navigation';
-import { generateMetadata } from '~/lib/meta';
+import { generateMetadata } from '~/lib/queries';
 
 const ibmPlexMono = IBM_Plex_Mono({
   variable: '--font-ibm-plex-mono',

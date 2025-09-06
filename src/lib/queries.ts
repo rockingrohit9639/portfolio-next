@@ -99,7 +99,7 @@ export const getThoughts = unstable_cache(
   { tags: ['thoughts'] },
 );
 
-export const getMeta = unstable_cache(
+export const generateMetadata = unstable_cache(
   async (type: keyof Meta) => {
     const payload = await getPayload({ config: configPromise });
     const meta = await payload.findGlobal({
@@ -107,7 +107,15 @@ export const getMeta = unstable_cache(
       select: { [type]: true },
     });
 
-    return meta;
+    const group = meta[type];
+    if (!group || typeof group === 'string') {
+      return {
+        title: 'rohit kumar saini',
+        description: '',
+      };
+    }
+
+    return group;
   },
   ['meta'],
   { tags: ['meta'] },

@@ -1,6 +1,5 @@
 import CodeBlock from '~/components/code-block';
-import { generateMetadata } from '~/lib/meta';
-import { getSnippets } from '~/lib/queries';
+import { generateMetadata, getSnippets } from '~/lib/queries';
 
 export const metadata = generateMetadata('snippets');
 

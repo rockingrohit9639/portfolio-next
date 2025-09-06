@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { generateMetadata } from '~/lib/meta';
-import { getBookmarks } from '~/lib/queries';
+import { generateMetadata, getBookmarks } from '~/lib/queries';
 import type { Bookmark } from '~/payload-types';
 
 export const metadata = generateMetadata('bookmarks');
