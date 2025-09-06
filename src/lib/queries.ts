@@ -1,6 +1,7 @@
 import configPromise from '@payload-config';
 import { unstable_cache } from 'next/cache';
 import { getPayload } from 'payload';
+import type { Meta } from '~/payload-types';
 
 export const getHomePageData = unstable_cache(
   async () => {
@@ -96,4 +97,18 @@ export const getThoughts = unstable_cache(
   },
   ['thoughts'],
   { tags: ['thoughts'] },
+);
+
+export const getMeta = unstable_cache(
+  async (type: keyof Meta) => {
+    const payload = await getPayload({ config: configPromise });
+    const meta = await payload.findGlobal({
+      slug: 'meta',
+      select: { [type]: true },
+    });
+
+    return meta;
+  },
+  ['meta'],
+  { tags: ['meta'] },
 );

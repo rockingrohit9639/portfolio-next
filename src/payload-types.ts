@@ -461,6 +461,18 @@ export interface Meta {
     title: string;
     description: string;
   };
+  thoughts: {
+    title: string;
+    description: string;
+  };
+  bookmarks: {
+    title: string;
+    description: string;
+  };
+  snippets: {
+    title: string;
+    description: string;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -483,6 +495,24 @@ export interface Home {
  */
 export interface MetaSelect<T extends boolean = true> {
   home?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  thoughts?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  bookmarks?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  snippets?:
     | T
     | {
         title?: T;

@@ -1,5 +1,8 @@
 import CodeBlock from '~/components/code-block';
+import { generateMetadata } from '~/lib/meta';
 import { getSnippets } from '~/lib/queries';
+
+export const metadata = generateMetadata('snippets');
 
 export default async function SnippetsPage() {
   const snippets = await getSnippets();
