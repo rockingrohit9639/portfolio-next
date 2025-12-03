@@ -27,7 +27,6 @@ export default async function BookmarksPage() {
           {bookmarks.map((bookmark) => (
             <div key={bookmark.id} className="flex items-center gap-2">
               <Image
-                className="rounded-full"
                 src={`https://s2.googleusercontent.com/s2/favicons?domain=${bookmark.url}`}
                 alt={bookmark.title}
                 width={20}
