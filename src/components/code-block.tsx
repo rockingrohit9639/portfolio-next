@@ -32,9 +32,10 @@ hljs.registerLanguage('rust', rust);
 
 type CodeBlockProps = {
   code: string;
+  title?: string;
 };
 
-export default function CodeBlock({ code }: CodeBlockProps) {
+export default function CodeBlock({ code, title }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
 
   function handleCopy() {
@@ -51,6 +52,7 @@ export default function CodeBlock({ code }: CodeBlockProps) {
           <span className="size-2.5 rounded-full bg-border" />
           <span className="size-2.5 rounded-full bg-border" />
         </div>
+        {title && <span className="absolute left-1/2 -translate-x-1/2 text-xs text-muted/60">{title}</span>}
         <button
           type="button"
           className="cursor-pointer p-1.5 text-muted transition-colors hover:bg-border hover:text-foreground"

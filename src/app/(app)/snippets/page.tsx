@@ -14,10 +14,7 @@ export default async function SnippetsPage() {
 
       <div className="space-y-5 md:space-y-10">
         {snippets.map((snippet) => (
-          <div key={snippet.id}>
-            <h2 className="mb-1 text-muted text-sm">{snippet.title}</h2>
-            <CodeBlock code={snippet.content} />
-          </div>
+          <CodeBlock key={snippet.id} code={snippet.content} title={snippet.title} />
         ))}
       </div>
     </div>
