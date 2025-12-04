@@ -1,4 +1,5 @@
 import { QuoteIcon } from 'lucide-react';
+import WaveSeparator from '~/components/wave-separator';
 import { generateMetadata, getThoughts } from '~/lib/queries';
 import type { Thought } from '~/payload-types';
 
@@ -17,11 +18,13 @@ export default async function ThoughtsPage() {
 
   return (
     <div className="md:max-w-xl">
-      <h1 className="mb-5 md:mb-10 md:max-w-xl text-muted">
+      <h1 className="mb-5 md:max-w-xl text-muted">
         welcome to my scratchpad: project ideas, random ramblings, and notes from the island.
       </h1>
 
-      {Object.entries(groupedThoughts).map(([type, thoughts]) => (
+      <WaveSeparator />
+
+      {Object.entries(groupedThoughts).map(([type, thoughts], index) => (
         <div key={type} className="mb-8 md:mb-14">
           <h2 className="mb-4 text-muted">{typeLabels[type] || type}</h2>
           <div className="space-y-4 md:space-y-6">
@@ -29,6 +32,7 @@ export default async function ThoughtsPage() {
               <ThoughtCard key={thought.id} thought={thought} />
             ))}
           </div>
+          {index < Object.keys(groupedThoughts).length - 1 ? <WaveSeparator /> : null}
         </div>
       ))}
     </div>

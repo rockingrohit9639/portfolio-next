@@ -65,6 +65,11 @@
     /* biome-ignore lint/suspicious/noUnknownAtRules: Apply */
     @apply bg-background text-foreground;
   }
+
+  ::selection {
+    background-color: var(--border);
+    color: var(--foreground);
+  }
 }
 
 /* Custom syntax highlighting */

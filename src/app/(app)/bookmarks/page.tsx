@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import WaveSeparator from '~/components/wave-separator';
 import { generateMetadata, getBookmarks } from '~/lib/queries';
 import type { Bookmark } from '~/payload-types';
 
@@ -17,11 +18,13 @@ export default async function BookmarksPage() {
 
   return (
     <div className="md:max-w-xl">
-      <h1 className="mb-5 md:mb-10 md:max-w-xl text-muted">
+      <h1 className="mb-5 md:max-w-xl text-muted">
         my digital shelf: tools, articles, videos, and random gems i've collected along the way.
       </h1>
 
-      {Object.entries(groupedBookmarks).map(([category, bookmarks]) => (
+      <WaveSeparator />
+
+      {Object.entries(groupedBookmarks).map(([category, bookmarks], index) => (
         <div key={category} className="mb-5 md:mb-10">
           <h2 className="mb-2 text-muted">{category}</h2>
           {bookmarks.map((bookmark) => (
@@ -43,6 +46,7 @@ export default async function BookmarksPage() {
               </Link>
             </div>
           ))}
+          {index < Object.keys(groupedBookmarks).length - 1 ? <WaveSeparator /> : null}
         </div>
       ))}
     </div>
