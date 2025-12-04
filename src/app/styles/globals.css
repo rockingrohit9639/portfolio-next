@@ -168,3 +168,18 @@
 .hljs-strong {
   font-weight: 700;
 }
+
+/* Wave animation */
+@keyframes wave {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.wave-container:hover .wave-char {
+  animation: wave 0.4s ease-in-out forwards;
+}
