@@ -99,6 +99,43 @@ export const getThoughts = unstable_cache(
   { tags: ['thoughts'] },
 );
 
+export const getBlogPosts = unstable_cache(
+  async () => {
+    const payload = await getPayload({ config: configPromise });
+    const posts = await payload.find({
+      collection: 'blog',
+      depth: 1,
+      where: {
+        status: { equals: 'published' },
+      },
+      sort: '-publishedAt',
+    });
+
+    return posts.docs;
+  },
+  ['blog'],
+  { tags: ['blog'] },
+);
+
+export const getBlogPostBySlug = unstable_cache(
+  async (slug: string) => {
+    const payload = await getPayload({ config: configPromise });
+    const posts = await payload.find({
+      collection: 'blog',
+      depth: 1,
+      where: {
+        slug: { equals: slug },
+        status: { equals: 'published' },
+      },
+      limit: 1,
+    });
+
+    return posts.docs[0] || null;
+  },
+  ['blog-post'],
+  { tags: ['blog'] },
+);
+
 export const generateMetadata = unstable_cache(
   async (type: keyof Meta) => {
     const payload = await getPayload({ config: configPromise });

@@ -30,6 +30,7 @@ export const Meta = {
   },
   fields: [
     getMetaField({ label: 'Home', name: 'home' }),
+    getMetaField({ label: 'Blog', name: 'blog' }),
     getMetaField({ label: 'Thoughts', name: 'thoughts' }),
     getMetaField({ label: 'Bookmarks', name: 'bookmarks' }),
     getMetaField({ label: 'Snippets', name: 'snippets' }),

@@ -74,6 +74,7 @@ export interface Config {
     thoughts: Thought;
     bookmarks: Bookmark;
     snippets: Snippet;
+    blog: Blog;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -87,6 +88,7 @@ export interface Config {
     thoughts: ThoughtsSelect<false> | ThoughtsSelect<true>;
     bookmarks: BookmarksSelect<false> | BookmarksSelect<true>;
     snippets: SnippetsSelect<false> | SnippetsSelect<true>;
+    blog: BlogSelect<false> | BlogSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -241,6 +243,53 @@ export interface Snippet {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog".
+ */
+export interface Blog {
+  id: string;
+  title: string;
+  /**
+   * URL-friendly identifier (e.g., "my-first-post")
+   */
+  slug: string;
+  /**
+   * A short summary of the post (displayed in listings)
+   */
+  excerpt: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Tags for categorizing the post
+   */
+  tags?:
+    | {
+        tag: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * The date this post was/will be published
+   */
+  publishedAt: string;
+  status: 'draft' | 'published';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -273,6 +322,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'snippets';
         value: string | Snippet;
+      } | null)
+    | ({
+        relationTo: 'blog';
+        value: string | Blog;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -421,6 +474,26 @@ export interface SnippetsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog_select".
+ */
+export interface BlogSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  excerpt?: T;
+  content?: T;
+  tags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
+  publishedAt?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
@@ -461,6 +534,10 @@ export interface Meta {
     title: string;
     description: string;
   };
+  blog: {
+    title: string;
+    description: string;
+  };
   thoughts: {
     title: string;
     description: string;
@@ -495,6 +572,12 @@ export interface Home {
  */
 export interface MetaSelect<T extends boolean = true> {
   home?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  blog?:
     | T
     | {
         title?: T;
@@ -542,7 +625,6 @@ export interface HomeSelect<T extends boolean = true> {
 export interface Auth {
   [k: string]: unknown;
 }
-
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}

@@ -5,6 +5,7 @@ import { payloadCloudPlugin } from '@payloadcms/payload-cloud';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { buildConfig } from 'payload';
 
+import { Blog } from './collections/Blog';
 import { Bookmark } from './collections/Bookmark';
 import { Experience } from './collections/Experience';
 import { Project } from './collections/Project';
@@ -26,7 +27,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Project, Skill, Experience, Thoughts, Bookmark, Snippets],
+  collections: [Users, Project, Skill, Experience, Thoughts, Bookmark, Snippets, Blog],
   globals: [Meta, Home],
   editor: lexicalEditor(),
   secret: env.PAYLOAD_SECRET,
