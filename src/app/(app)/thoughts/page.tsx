@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import WaveSeparator from '~/components/wave-separator';
 import { generateMetadata, getThoughts } from '~/lib/queries';
 import ThoughtsTabs from './_components/thoughts-tabs';
@@ -15,7 +16,28 @@ export default async function ThoughtsPage() {
 
       <WaveSeparator />
 
-      <ThoughtsTabs thoughts={thoughts} />
+      <Suspense fallback={<ThoughtsTabsSkeleton />}>
+        <ThoughtsTabs thoughts={thoughts} />
+      </Suspense>
     </div>
+  );
+}
+
+function ThoughtsTabsSkeleton() {
+  return (
+    <>
+      <div className="flex flex-wrap gap-2 mb-6">
+        <div className="h-9 w-16 bg-border/50 animate-pulse" />
+        <div className="h-9 w-16 bg-border/50 animate-pulse" />
+        <div className="h-9 w-16 bg-border/50 animate-pulse" />
+        <div className="h-9 w-16 bg-border/50 animate-pulse" />
+        <div className="h-9 w-16 bg-border/50 animate-pulse" />
+      </div>
+      <div className="space-y-4 md:space-y-6">
+        <div className="h-24 bg-border/50 animate-pulse" />
+        <div className="h-24 bg-border/50 animate-pulse" />
+        <div className="h-24 bg-border/50 animate-pulse" />
+      </div>
+    </>
   );
 }
