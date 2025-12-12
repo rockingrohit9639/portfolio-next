@@ -1,9 +1,33 @@
 import dayjs from 'dayjs';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import WaveSeparator from '~/components/wave-separator';
-import { generateMetadata, getBlogPosts } from '~/lib/queries';
+import {  SITE_URL, TWITTER_HANDLE } from '~/lib/constants';
+import { generateMetadata as fetchMetadata, getBlogPosts } from '~/lib/queries';
 
-export const metadata = generateMetadata('blog');
+export async function generateMetadata(): Promise<Metadata> {
+  const meta = await fetchMetadata('blog');
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    openGraph: {
+      type: 'website',
+      title: meta.title,
+      description: meta.description,
+      url: `${SITE_URL}/blog`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.title,
+      description: meta.description,
+      creator: TWITTER_HANDLE,
+    },
+    alternates: {
+      canonical: `${SITE_URL}/blog`,
+    },
+  };
+}
 
 export default async function BlogPage() {
   const posts = await getBlogPosts();

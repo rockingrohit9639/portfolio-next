@@ -1,10 +1,34 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import WaveSeparator from '~/components/wave-separator';
-import { generateMetadata, getBookmarks } from '~/lib/queries';
+import { SITE_URL, TWITTER_HANDLE } from '~/lib/constants';
+import { generateMetadata as fetchMetadata, getBookmarks } from '~/lib/queries';
 import type { Bookmark } from '~/payload-types';
 
-export const metadata = generateMetadata('bookmarks');
+export async function generateMetadata(): Promise<Metadata> {
+  const meta = await fetchMetadata('bookmarks');
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    openGraph: {
+      type: 'website',
+      title: meta.title,
+      description: meta.description,
+      url: `${SITE_URL}/bookmarks`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.title,
+      description: meta.description,
+      creator: TWITTER_HANDLE,
+    },
+    alternates: {
+      canonical: `${SITE_URL}/bookmarks`,
+    },
+  };
+}
 
 export default async function BookmarksPage() {
   const bookmarks = await getBookmarks();

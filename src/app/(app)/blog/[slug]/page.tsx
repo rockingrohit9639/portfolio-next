@@ -3,7 +3,9 @@ import dayjs from 'dayjs';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { JsonLd } from '~/components/json-ld';
 import WaveSeparator from '~/components/wave-separator';
+import { SITE_NAME, SITE_URL, TWITTER_HANDLE } from '~/lib/constants';
 import { getBlogPostBySlug, getBlogPosts } from '~/lib/queries';
 
 type BlogPostPageProps = {
@@ -23,9 +25,32 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     return { title: 'Post Not Found' };
   }
 
+  const postUrl = `${SITE_URL}/blog/${post.slug}`;
+
   return {
     title: post.title,
     description: post.excerpt,
+    keywords: post.tags?.map((t) => t.tag),
+    authors: [{ name: SITE_NAME, url: SITE_URL }],
+    openGraph: {
+      type: 'article',
+      title: post.title,
+      description: post.excerpt,
+      url: postUrl,
+      publishedTime: post.publishedAt,
+      modifiedTime: post.updatedAt,
+      authors: [SITE_NAME],
+      tags: post.tags?.map((t) => t.tag),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      creator: TWITTER_HANDLE,
+    },
+    alternates: {
+      canonical: postUrl,
+    },
   };
 }
 
@@ -39,6 +64,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className="md:max-w-xl">
+      <JsonLd type="article" data={post} />
+
       <Link
         href="/blog"
         className="inline-flex items-center gap-1 text-sm text-muted mb-6 hover:text-foreground transition-colors duration-150"

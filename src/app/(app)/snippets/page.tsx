@@ -1,8 +1,32 @@
+import type { Metadata } from 'next';
 import CodeBlock from '~/components/code-block';
 import WaveSeparator from '~/components/wave-separator';
-import { generateMetadata, getSnippets } from '~/lib/queries';
+import { SITE_URL, TWITTER_HANDLE } from '~/lib/constants';
+import { generateMetadata as fetchMetadata, getSnippets } from '~/lib/queries';
 
-export const metadata = generateMetadata('snippets');
+export async function generateMetadata(): Promise<Metadata> {
+  const meta = await fetchMetadata('snippets');
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    openGraph: {
+      type: 'website',
+      title: meta.title,
+      description: meta.description,
+      url: `${SITE_URL}/snippets`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.title,
+      description: meta.description,
+      creator: TWITTER_HANDLE,
+    },
+    alternates: {
+      canonical: `${SITE_URL}/snippets`,
+    },
+  };
+}
 
 export default async function SnippetsPage() {
   const snippets = await getSnippets();

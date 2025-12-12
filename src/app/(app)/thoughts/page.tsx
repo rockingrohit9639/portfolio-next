@@ -1,9 +1,33 @@
+import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import WaveSeparator from '~/components/wave-separator';
-import { generateMetadata, getThoughts } from '~/lib/queries';
+import { SITE_URL, TWITTER_HANDLE } from '~/lib/constants';
+import { generateMetadata as fetchMetadata, getThoughts } from '~/lib/queries';
 import ThoughtsTabs from './_components/thoughts-tabs';
 
-export const metadata = generateMetadata('thoughts');
+export async function generateMetadata(): Promise<Metadata> {
+  const meta = await fetchMetadata('thoughts');
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    openGraph: {
+      type: 'website',
+      title: meta.title,
+      description: meta.description,
+      url: `${SITE_URL}/thoughts`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.title,
+      description: meta.description,
+      creator: TWITTER_HANDLE,
+    },
+    alternates: {
+      canonical: `${SITE_URL}/thoughts`,
+    },
+  };
+}
 
 export default async function ThoughtsPage() {
   const thoughts = await getThoughts();
