@@ -2,6 +2,7 @@ import configPromise from '@payload-config';
 import { unstable_cache } from 'next/cache';
 import { getPayload } from 'payload';
 import type { Meta } from '~/payload-types';
+import { SLUGS } from './slugs';
 
 export const getHomePageData = unstable_cache(
   async () => {
@@ -16,77 +17,77 @@ export const getExperiences = unstable_cache(
   async () => {
     const payload = await getPayload({ config: configPromise });
     const experience = await payload.find({
-      collection: 'experience',
+      collection: SLUGS.experience,
       depth: 1,
     });
     return experience.docs;
   },
-  ['experience'],
-  { tags: ['experience'] },
+  [SLUGS.experience],
+  { tags: [SLUGS.experience] },
 );
 
 export const getProjects = unstable_cache(
   async () => {
     const payload = await getPayload({ config: configPromise });
     const projects = await payload.find({
-      collection: 'projects',
+      collection: SLUGS.projects,
       depth: 1,
     });
 
     return projects.docs;
   },
-  ['projects'],
-  { tags: ['projects'] },
+  [SLUGS.projects],
+  { tags: [SLUGS.projects] },
 );
 
 export const getSkills = unstable_cache(
   async () => {
     const payload = await getPayload({ config: configPromise });
     const skills = await payload.find({
-      collection: 'skills',
+      collection: SLUGS.skills,
       depth: 1,
       limit: 100,
     });
     return skills.docs;
   },
-  ['skills'],
-  { tags: ['skills'] },
+  [SLUGS.skills],
+  { tags: [SLUGS.skills] },
 );
 
 export const getBookmarks = unstable_cache(
   async () => {
     const payload = await getPayload({ config: configPromise });
     const bookmarks = await payload.find({
-      collection: 'bookmarks',
+      collection: SLUGS.bookmarks,
       depth: 1,
       sort: 'createdAt',
     });
     return bookmarks.docs;
   },
-  ['bookmarks'],
-  { tags: ['bookmarks'] },
+  [SLUGS.bookmarks],
+  { tags: [SLUGS.bookmarks] },
 );
 
 export const getSnippets = unstable_cache(
   async () => {
     const payload = await getPayload({ config: configPromise });
     const snippets = await payload.find({
-      collection: 'snippets',
+      collection: SLUGS.snippets,
       depth: 1,
       sort: 'createdAt',
     });
 
     return snippets.docs;
   },
-  ['snippets'],
-  { tags: ['snippets'] },
+  [SLUGS.snippets],
+  { tags: [SLUGS.snippets] },
 );
 
 export const getThoughts = unstable_cache(
   async () => {
     const payload = await getPayload({ config: configPromise });
     const thoughts = await payload.find({
-      collection: 'thoughts',
+      collection: SLUGS.thoughts,
       depth: 1,
       where: {
         isPublished: { equals: true },
@@ -95,15 +96,15 @@ export const getThoughts = unstable_cache(
 
     return thoughts.docs;
   },
-  ['thoughts'],
-  { tags: ['thoughts'] },
+  [SLUGS.thoughts],
+  { tags: [SLUGS.thoughts] },
 );
 
 export const getBlogPosts = unstable_cache(
   async () => {
     const payload = await getPayload({ config: configPromise });
     const posts = await payload.find({
-      collection: 'blog',
+      collection: SLUGS.blog,
       depth: 1,
       where: {
         status: { equals: 'published' },
@@ -113,15 +114,15 @@ export const getBlogPosts = unstable_cache(
 
     return posts.docs;
   },
-  ['blog'],
-  { tags: ['blog'] },
+  [SLUGS.blog],
+  { tags: [SLUGS.blog] },
 );
 
 export const getBlogPostBySlug = unstable_cache(
   async (slug: string) => {
     const payload = await getPayload({ config: configPromise });
     const posts = await payload.find({
-      collection: 'blog',
+      collection: SLUGS.blog,
       depth: 1,
       where: {
         slug: { equals: slug },
@@ -132,8 +133,8 @@ export const getBlogPostBySlug = unstable_cache(
 
     return posts.docs[0] || null;
   },
-  ['blog-post'],
-  { tags: ['blog'] },
+  [SLUGS.blog],
+  { tags: [SLUGS.blog] },
 );
 
 export const generateMetadata = unstable_cache(

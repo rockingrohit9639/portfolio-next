@@ -1,14 +1,16 @@
 import type { CollectionConfig } from 'payload';
-import { CollectionAfterChange } from '~/lib/payload';
+import { CollectionAfterChange, CollectionAfterDelete } from '~/lib/payload';
+import { SLUGS } from '~/lib/slugs';
 
 export const Blog = {
-  slug: 'blog',
+  slug: SLUGS.blog,
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'status', 'publishedAt'],
   },
   hooks: {
     afterChange: [CollectionAfterChange],
+    afterDelete: [CollectionAfterDelete],
   },
   fields: [
     {

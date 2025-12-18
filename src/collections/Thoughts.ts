@@ -1,13 +1,15 @@
 import type { CollectionConfig } from 'payload';
-import { CollectionAfterChange } from '~/lib/payload';
+import { CollectionAfterChange, CollectionAfterDelete } from '~/lib/payload';
+import { SLUGS } from '~/lib/slugs';
 
 export const Thoughts = {
-  slug: 'thoughts',
+  slug: SLUGS.thoughts,
   admin: {
     useAsTitle: 'title',
   },
   hooks: {
     afterChange: [CollectionAfterChange],
+    afterDelete: [CollectionAfterDelete],
   },
   fields: [
     {

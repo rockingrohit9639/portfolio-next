@@ -1,10 +1,12 @@
 import type { CollectionConfig } from 'payload';
-import { CollectionAfterChange } from '~/lib/payload';
+import { CollectionAfterChange, CollectionAfterDelete } from '~/lib/payload';
+import { SLUGS } from '~/lib/slugs';
 
 export const Skill = {
-  slug: 'skills',
+  slug: SLUGS.skills,
   hooks: {
     afterChange: [CollectionAfterChange],
+    afterDelete: [CollectionAfterDelete],
   },
   admin: {
     useAsTitle: 'skill',
