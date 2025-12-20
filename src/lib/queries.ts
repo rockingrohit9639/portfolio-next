@@ -19,6 +19,7 @@ export const getExperiences = unstable_cache(
     const experience = await payload.find({
       collection: SLUGS.experience,
       depth: 1,
+      pagination: false,
     });
     return experience.docs;
   },
@@ -32,6 +33,7 @@ export const getProjects = unstable_cache(
     const projects = await payload.find({
       collection: SLUGS.projects,
       depth: 1,
+      pagination: false,
     });
 
     return projects.docs;
@@ -46,7 +48,7 @@ export const getSkills = unstable_cache(
     const skills = await payload.find({
       collection: SLUGS.skills,
       depth: 1,
-      limit: 100,
+      pagination: false,
     });
     return skills.docs;
   },
@@ -61,6 +63,7 @@ export const getBookmarks = unstable_cache(
       collection: SLUGS.bookmarks,
       depth: 1,
       sort: 'createdAt',
+      pagination: false,
     });
     return bookmarks.docs;
   },
@@ -75,6 +78,7 @@ export const getSnippets = unstable_cache(
       collection: SLUGS.snippets,
       depth: 1,
       sort: 'createdAt',
+      pagination: false,
     });
 
     return snippets.docs;
@@ -92,6 +96,7 @@ export const getThoughts = unstable_cache(
       where: {
         isPublished: { equals: true },
       },
+      pagination: false,
     });
 
     return thoughts.docs;
@@ -110,6 +115,7 @@ export const getBlogPosts = unstable_cache(
         status: { equals: 'published' },
       },
       sort: '-publishedAt',
+      pagination: false,
     });
 
     return posts.docs;

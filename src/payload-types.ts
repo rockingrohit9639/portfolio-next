@@ -626,6 +626,7 @@ export interface Auth {
   [k: string]: unknown;
 }
 
+
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}
 }

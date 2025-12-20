@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { connection } from 'next/server';
 import { JsonLd } from '~/components/json-ld';
 import WaveSeparator from '~/components/wave-separator';
 import { SITE_NAME, SITE_URL, TWITTER_HANDLE } from '~/lib/constants';
@@ -56,7 +55,6 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  await connection();
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);
 

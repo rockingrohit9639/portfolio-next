@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { connection } from 'next/server';
 import CodeBlock from '~/components/code-block';
 import WaveSeparator from '~/components/wave-separator';
 import { SITE_URL, TWITTER_HANDLE } from '~/lib/constants';
@@ -30,7 +29,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function SnippetsPage() {
-  await connection();
   const snippets = await getSnippets();
 
   return (
