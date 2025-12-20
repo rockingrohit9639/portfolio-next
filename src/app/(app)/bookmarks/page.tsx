@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { connection } from 'next/server';
 import WaveSeparator from '~/components/wave-separator';
 import { SITE_URL, TWITTER_HANDLE } from '~/lib/constants';
 import { generateMetadata as fetchMetadata, getBookmarks } from '~/lib/queries';
@@ -31,6 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function BookmarksPage() {
+  await connection();
   const bookmarks = await getBookmarks();
   const groupedBookmarks = bookmarks.reduce(
     (acc, bookmark) => {

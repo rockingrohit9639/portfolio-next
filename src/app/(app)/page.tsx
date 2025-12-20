@@ -3,8 +3,10 @@ import { getHomePageData } from '~/lib/queries';
 import Experience from './_components/experience';
 import Projects from './_components/projects';
 import Skills from './_components/skills';
+import { connection } from 'next/server';
 
 export default async function Home() {
+  await connection();
   const home = await getHomePageData();
 
   return (

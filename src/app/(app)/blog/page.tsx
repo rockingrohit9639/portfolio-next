@@ -1,8 +1,9 @@
 import dayjs from 'dayjs';
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { connection } from 'next/server';
 import WaveSeparator from '~/components/wave-separator';
-import {  SITE_URL, TWITTER_HANDLE } from '~/lib/constants';
+import { SITE_URL, TWITTER_HANDLE } from '~/lib/constants';
 import { generateMetadata as fetchMetadata, getBlogPosts } from '~/lib/queries';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -30,6 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function BlogPage() {
+  await connection();
   const posts = await getBlogPosts();
 
   return (

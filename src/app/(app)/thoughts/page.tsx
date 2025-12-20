@@ -4,6 +4,7 @@ import WaveSeparator from '~/components/wave-separator';
 import { SITE_URL, TWITTER_HANDLE } from '~/lib/constants';
 import { generateMetadata as fetchMetadata, getThoughts } from '~/lib/queries';
 import ThoughtsTabs from './_components/thoughts-tabs';
+import { connection } from 'next/server';
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta = await fetchMetadata('thoughts');
@@ -30,6 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ThoughtsPage() {
+  await connection();
   const thoughts = await getThoughts();
 
   return (
