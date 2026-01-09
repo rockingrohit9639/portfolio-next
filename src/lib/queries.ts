@@ -164,3 +164,22 @@ export const generateMetadata = unstable_cache(
   ['meta'],
   { tags: ['meta'] },
 );
+
+export const getGalleryImages = unstable_cache(
+  async () => {
+    const payload = await getPayload({ config: configPromise });
+    const gallery = await payload.find({
+      collection: SLUGS.gallery,
+      depth: 2,
+      where: {
+        isPublished: { equals: true },
+      },
+      sort: 'order',
+      pagination: false,
+    });
+
+    return gallery.docs;
+  },
+  [SLUGS.gallery],
+  { tags: [SLUGS.gallery] },
+);
