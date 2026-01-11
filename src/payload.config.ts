@@ -1,7 +1,6 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { mongooseAdapter } from '@payloadcms/db-mongodb';
-import { payloadCloudPlugin } from '@payloadcms/payload-cloud';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { buildConfig } from 'payload';
@@ -40,7 +39,6 @@ export default buildConfig({
   },
   db: mongooseAdapter({ url: env.DATABASE_URI }),
   plugins: [
-    payloadCloudPlugin(),
     vercelBlobStorage({
       enabled: true,
       token: env.BLOB_READ_WRITE_TOKEN,
