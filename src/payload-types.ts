@@ -350,6 +350,7 @@ export interface Media {
  */
 export interface Gallery {
   id: string;
+  image: string | Media;
   /**
    * Title/caption for the image
    */
@@ -358,7 +359,6 @@ export interface Gallery {
    * Optional description for the image (shown in lightbox)
    */
   description?: string | null;
-  image: string | Media;
   /**
    * Category for filtering in the gallery
    */
@@ -647,9 +647,9 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "gallery_select".
  */
 export interface GallerySelect<T extends boolean = true> {
+  image?: T;
   title?: T;
   description?: T;
-  image?: T;
   category?: T;
   aspectRatio?: T;
   order?: T;

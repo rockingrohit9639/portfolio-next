@@ -4,6 +4,10 @@ import { SLUGS } from '~/lib/slugs';
 
 export const Gallery = {
   slug: SLUGS.gallery,
+  labels: {
+    singular: 'Gallery Image',
+    plural: 'Gallery Images',
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'category', 'aspectRatio', 'isPublished'],
@@ -14,6 +18,12 @@ export const Gallery = {
     afterDelete: [CollectionAfterDelete],
   },
   fields: [
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: SLUGS.media,
+      required: true,
+    },
     {
       name: 'title',
       type: 'text',
@@ -28,12 +38,6 @@ export const Gallery = {
       admin: {
         description: 'Optional description for the image (shown in lightbox)',
       },
-    },
-    {
-      name: 'image',
-      type: 'upload',
-      relationTo: SLUGS.media,
-      required: true,
     },
     {
       name: 'category',
