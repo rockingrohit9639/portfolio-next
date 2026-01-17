@@ -23,6 +23,13 @@ export const Gallery = {
       },
     },
     {
+      name: 'description',
+      type: 'textarea',
+      admin: {
+        description: 'Optional description for the image (shown in lightbox)',
+      },
+    },
+    {
       name: 'image',
       type: 'upload',
       relationTo: SLUGS.media,
@@ -38,6 +45,7 @@ export const Gallery = {
         { label: 'Portraits', value: 'portraits' },
         { label: 'Street', value: 'street' },
         { label: 'Abstract', value: 'abstract' },
+        { label: 'Mountains', value: 'mountains' },
         { label: 'Misc', value: 'misc' },
       ],
       admin: {

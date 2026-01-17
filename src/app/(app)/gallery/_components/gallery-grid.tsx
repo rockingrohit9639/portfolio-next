@@ -157,9 +157,11 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
           </div>
 
           {/* Caption */}
-          <div className="absolute bottom-4 left-0 right-0 text-center z-10 pointer-events-none">
-            <p className="text-white text-sm">{selectedImage.title}</p>
-            <p className="text-white/50 text-xs mt-1">{selectedImage.category}</p>
+          <div className="absolute bottom-4 left-0 right-0 text-center z-10 pointer-events-none px-4">
+            <p className="text-white text-sm font-medium">{selectedImage.title}</p>
+            {selectedImage.description && (
+              <p className="text-white/70 text-xs mt-1 max-w-md mx-auto">{selectedImage.description}</p>
+            )}
           </div>
         </div>
       )}

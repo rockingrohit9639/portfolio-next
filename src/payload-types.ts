@@ -354,11 +354,15 @@ export interface Gallery {
    * Title/caption for the image
    */
   title: string;
+  /**
+   * Optional description for the image (shown in lightbox)
+   */
+  description?: string | null;
   image: string | Media;
   /**
    * Category for filtering in the gallery
    */
-  category: 'nature' | 'architecture' | 'portraits' | 'street' | 'abstract' | 'misc';
+  category: 'nature' | 'architecture' | 'portraits' | 'street' | 'abstract' | 'mountains' | 'misc';
   /**
    * Aspect ratio for gallery display
    */
@@ -644,6 +648,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface GallerySelect<T extends boolean = true> {
   title?: T;
+  description?: T;
   image?: T;
   category?: T;
   aspectRatio?: T;
