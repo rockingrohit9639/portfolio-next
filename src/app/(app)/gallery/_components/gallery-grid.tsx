@@ -25,6 +25,20 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
 
   const filteredImages = activeCategory === 'all' ? images : images.filter((img) => img.category === activeCategory);
 
+  const currentIndex = selectedImage ? filteredImages.findIndex((img) => img.id === selectedImage.id) : -1;
+
+  const goToPrevious = () => {
+    if (currentIndex > 0) {
+      setSelectedImage(filteredImages[currentIndex - 1]);
+    }
+  };
+
+  const goToNext = () => {
+    if (currentIndex < filteredImages.length - 1) {
+      setSelectedImage(filteredImages[currentIndex + 1]);
+    }
+  };
+
   const getImageUrl = (image: Gallery): string => {
     const media = image.image as Media;
     return media?.url || '';
@@ -110,13 +124,17 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
           role="dialog"
           aria-modal="true"
           aria-label="Image lightbox"
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') setSelectedImage(null);
+            if (e.key === 'ArrowLeft') goToPrevious();
+            if (e.key === 'ArrowRight') goToNext();
+          }}
         >
           {/* Backdrop close button */}
           <button
             type="button"
             className="absolute inset-0 w-full h-full cursor-default"
             onClick={() => setSelectedImage(null)}
-            onKeyDown={(e) => e.key === 'Escape' && setSelectedImage(null)}
             aria-label="Close lightbox"
           />
 
@@ -144,8 +162,58 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
             </svg>
           </button>
 
+          {/* Previous button */}
+          {currentIndex > 0 && (
+            <button
+              type="button"
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors z-10 p-2"
+              onClick={goToPrevious}
+              aria-label="Previous image"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <title>Previous</title>
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+          )}
+
+          {/* Next button */}
+          {currentIndex < filteredImages.length - 1 && (
+            <button
+              type="button"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors z-10 p-2"
+              onClick={goToNext}
+              aria-label="Next image"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <title>Next</title>
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
+          )}
+
           {/* Image container */}
-          <div className="relative max-w-5xl max-h-[85vh] w-full h-full z-10 pointer-events-none">
+          <div className="relative max-w-5xl max-h-[70vh] w-full h-full z-10 pointer-events-none mb-20">
             <Image
               src={getImageUrl(selectedImage)}
               alt={getImageAlt(selectedImage)}
@@ -157,11 +225,14 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
           </div>
 
           {/* Caption */}
-          <div className="absolute bottom-4 left-0 right-0 text-center z-10 pointer-events-none px-4">
-            <p className="text-white text-sm font-medium">{selectedImage.title}</p>
+          <div className="absolute bottom-8 left-0 right-0 text-center z-10 pointer-events-none px-4">
+            <p className="text-white text-base font-medium">{selectedImage.title}</p>
             {selectedImage.description && (
-              <p className="text-white/70 text-xs mt-1 max-w-md mx-auto">{selectedImage.description}</p>
+              <p className="text-white/70 text-sm mt-2 max-w-lg mx-auto leading-relaxed">{selectedImage.description}</p>
             )}
+            <p className="text-white/40 text-xs mt-3">
+              {currentIndex + 1} / {filteredImages.length}
+            </p>
           </div>
         </div>
       )}
