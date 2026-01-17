@@ -43,7 +43,9 @@ export default buildConfig({
       enabled: true,
       token: env.BLOB_READ_WRITE_TOKEN,
       collections: {
-        [SLUGS.media]: true,
+        [SLUGS.media]: {
+          disablePayloadAccessControl: true,
+        },
       },
     }),
   ],

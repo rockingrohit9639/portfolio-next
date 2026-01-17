@@ -8,11 +8,15 @@ export const Media = {
     useAsTitle: 'alt',
     description: 'Media library for gallery images stored on Vercel Blob',
   },
+  access: {
+    read: () => true,
+  },
   hooks: {
     afterChange: [CollectionAfterChange],
     afterDelete: [CollectionAfterDelete],
   },
   upload: {
+    disableLocalStorage: true,
     mimeTypes: ['image/*'],
     imageSizes: [
       {

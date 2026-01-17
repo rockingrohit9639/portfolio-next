@@ -1,5 +1,6 @@
 'use client';
 
+import { ChevronLeftIcon, ChevronRightIcon, XIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { cn } from '~/lib/cn';
@@ -105,8 +106,8 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <p className="text-white text-sm font-medium">{image.title}</p>
-                    <p className="text-white/70 text-xs mt-1">{image.category}</p>
+                    <p className="text-white text-sm font-medium lowercase">{image.title}</p>
+                    <p className="text-white/70 text-xs mt-1 lowercase">{image.category}</p>
                   </div>
                 </div>
               </div>
@@ -145,21 +146,7 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
             onClick={() => setSelectedImage(null)}
             aria-label="Close lightbox"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <title>Close</title>
-              <path d="M18 6 6 18" />
-              <path d="m6 6 12 12" />
-            </svg>
+            <XIcon className="size-6" />
           </button>
 
           {/* Previous button */}
@@ -170,20 +157,7 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
               onClick={goToPrevious}
               aria-label="Previous image"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <title>Previous</title>
-                <path d="m15 18-6-6 6-6" />
-              </svg>
+              <ChevronLeftIcon className="size-6" />
             </button>
           )}
 
@@ -195,20 +169,7 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
               onClick={goToNext}
               aria-label="Next image"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <title>Next</title>
-                <path d="m9 18 6-6-6-6" />
-              </svg>
+              <ChevronRightIcon className="size-6" />
             </button>
           )}
 
@@ -226,9 +187,11 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
 
           {/* Caption */}
           <div className="absolute bottom-8 left-0 right-0 text-center z-10 pointer-events-none px-4">
-            <p className="text-white text-base font-medium">{selectedImage.title}</p>
+            <p className="text-white text-base font-medium lowercase">{selectedImage.title}</p>
             {selectedImage.description && (
-              <p className="text-white/70 text-sm mt-2 max-w-lg mx-auto leading-relaxed">{selectedImage.description}</p>
+              <p className="text-white/70 text-sm mt-2 max-w-lg mx-auto leading-relaxed lowercase">
+                {selectedImage.description}
+              </p>
             )}
             <p className="text-white/40 text-xs mt-3">
               {currentIndex + 1} / {filteredImages.length}
